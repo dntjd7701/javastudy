@@ -1,10 +1,8 @@
-#JAVA Practices
+# JAVA Practices
 
-##hello world
+## hello world
 
 1. 그냥 연습
 
+## chapter 01
 helloworld
-
-chapter 03 
-oop
