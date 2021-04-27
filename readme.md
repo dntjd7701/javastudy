@@ -6,3 +6,8 @@
 
 ## chapter 01
 helloworld
+
+
+
+# git을 잘 활용하자 !!
+
