@@ -7,7 +7,18 @@ public class Goods2 {
 	private int countSold;
 	private int countStock;
 	
+	//생성자 만들어주기, 평소에는 자동으로 만들어주지만 초기값 생성자로 인해 새로 만들어줘야해 
+	public Goods2() {
+	}
 	
+	//다형성!!! 다양한 방식으로 호출하여 사용 
+	public Goods2(String name, int price, int countSold, int countStock) {
+		this.name = name;
+		this.price = price;
+		this.countSold = countSold;
+		this.countStock = countStock;
+		
+	}
 	public String getName() {
 		return name;
 	}
@@ -44,5 +55,11 @@ public class Goods2 {
 		
 	}
 
+	public int calcDiscountPrice(double rate) {
+//		int discountPrice = price *  rate;
+//		return discountPrice;
+		return (int)(price * rate);
+		
+	}
 	
 }
