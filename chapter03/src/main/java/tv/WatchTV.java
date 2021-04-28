@@ -8,10 +8,10 @@ public class WatchTV {
          tv.status();	
          
          tv.power( true );
-         tv.volume( 120 );
+         tv.volumn( 120 );
          tv.status();		          
          
-         tv.volume( false );
+         tv.volumn( false );
          tv.status();
          
          tv.channel( 0 );
