@@ -1,13 +1,3 @@
-# JAVA Practices
+# JAVA 2021.04.28
 
-## hello world
-
-1. 그냥 연습
-
-## chapter 01
-helloworld
-
-
-
-# git을 잘 활용하자 !!
-
+## 객체의 정의
