@@ -11,6 +11,9 @@ public class PaintApp {
 
 		Point point2 = new Point(100, 200);
 		point2.show();
+		
+		
+		point2.show(false);
 
 	}
 
