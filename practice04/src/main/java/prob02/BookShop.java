@@ -70,13 +70,13 @@ public class BookShop {
 		}
 		// (2) Book 객체의 정보를 출력
 		System.out.println("*****도서 정보 출력하기******");
-//		displayBookInfo(books);
+		displayBookInfo(books);
 	}
 
-//	private static void displayBookInfo(Book[] books) {
-//		// TODO Auto-generated method stub
-//		books.print();
-//	}
+	private static void displayBookInfo(Book[] books) {
+		// TODO Auto-generated method stub
+		System.out.println(books);
+	}
 
 	
 }
