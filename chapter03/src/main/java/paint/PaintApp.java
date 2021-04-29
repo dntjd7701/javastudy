@@ -12,14 +12,16 @@ public class PaintApp {
 		
 		Point point2 = new Point(100, 200);
 		point2.show();
-		drawPoint(point2);
-		
+//		drawPoint(point2);
+		draw(point2);
+	
 
 		Point point3 = new ColorPoint(50, 100, "red");
 //		point3.setX(50);
 //		point3.setY(100);
 //		((ColorPoint)point3).setColor("red");
-		drawPoint(point3);
+//		drawPoint(point3);
+		draw(point3);
 //		point3.show();
 //		point3.show(true);
 		
@@ -37,10 +39,15 @@ public class PaintApp {
 		Circle circle = new Circle();
 //		drawShape(circle);
 		draw(circle);
+		
+		Drawable text = new GraphicText("hello~");
+		draw(text);
+		
+//		draw(new GraphicText("hello~"));
 	}
 		
 	public static void draw(Drawable drawable) {
-		pt.show();
+		drawable.draw();
 	}
 
 //		public static void drawPoint(ColorPoint pt) {
