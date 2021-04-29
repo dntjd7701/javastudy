@@ -1,4 +1,13 @@
-package paint;
+package com.douzone.paint.main;
+
+import com.douzone.paint.i.Drawable;
+import com.douzone.paint.point.ColorPoint;
+import com.douzone.paint.point.Point;
+import com.douzone.paint.shape.Circle;
+import com.douzone.paint.shape.Rect;
+import com.douzone.paint.shape.Shape;
+import com.douzone.paint.shape.Triangle;
+import com.douzone.paint.text.GraphicText;
 
 public class PaintApp {
 
@@ -42,6 +51,32 @@ public class PaintApp {
 		
 		Drawable text = new GraphicText("hello~");
 		draw(text);
+		
+		
+//		instanceof test
+		
+		System.out.println(circle instanceof Object);
+		System.out.println(circle instanceof Shape);
+		System.out.println(circle instanceof Circle);
+		
+		
+//		error : class는 hierachy 상위와 하위만 
+//		instanceof 연산자를 사용할 수 있다.
+//		동료 클래스는 사용 할 수 없다. ( ex) Rect-Circle )
+//		System.out.println(circle instanceof Rect);
+		
+		Shape s = new Circle();
+		
+		System.out.println(s instanceof Object);
+		System.out.println(s instanceof Shape);
+		System.out.println(s instanceof Circle);
+		System.out.println(s instanceof Rect);
+		
+//		interface는 hierachy와 상관없이
+//		instanceof 연산자를 사용할 수 있다.
+		System.out.println(s instanceof Drawable);
+		System.out.println(s instanceof Runnable);
+		
 		
 //		draw(new GraphicText("hello~"));
 	}

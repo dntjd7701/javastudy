@@ -1,5 +1,6 @@
-package paint;
+package com.douzone.paint.shape;
 
+import com.douzone.paint.i.Drawable;
 
 //추상 메소드가 있으면, 추상 클래스 ! 객체를 생성하면 안돼기 때문에 class abstract 기입
 
