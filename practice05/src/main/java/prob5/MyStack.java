@@ -5,6 +5,7 @@ public class MyStack {
 	private int top = -1;
 
 	public MyStack(int size) {
+		top  = -1;
 		data = new String[size];
 	}
 
@@ -25,11 +26,11 @@ public class MyStack {
 		data = temp;
 
 	}
-
-	public void isEmpty() {
-		if (top < 0) {
-			
-		}
+//	왜 top==-1 이면 비어있는 상태인거지 ?
+//	인덱스가 0 이전을 가르키고 있기 때문에 비어있다고 하는 것고 ㅏ같다.
+	
+	public boolean isEmpty() {
+		return top == -1;
 	}
 
 	public String pop() throws MyStackException {
