@@ -13,7 +13,7 @@ public class MyStack {
 		if (data.length() == top) {
 			resize();
 		}
-		top++;
+		date[++top] = ;
 
 	}
 
