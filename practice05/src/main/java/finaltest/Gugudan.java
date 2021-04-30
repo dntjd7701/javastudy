@@ -1,4 +1,4 @@
-package collection;
+package finaltest;
 
 public class Gugudan {
 
@@ -12,8 +12,8 @@ public class Gugudan {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		return " "+left*right;
+		
 	}
 
 	@Override
