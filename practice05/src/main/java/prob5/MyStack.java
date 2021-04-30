@@ -9,17 +9,27 @@ public class MyStack {
 		data = new String[size];
 	}
 
-	public void push(String data) {
-		if (data.length() == top) {
+	public void push(String s) {
+		if (data.length - 1 == top) {
 			resize();
 		}
-		date[++top] = ;
+		data[++top] = s;
 
 	}
+	public String pop() throws MyStackException {
+		if(isEmpty()) {
+			throw new MyStackException("EMPTYYYYYYY");
+		}
+		String result = data[top];
+		data[top--] = null;
+		return result;
+		
+	}
+	
 
 	private void resize() {
 		String[] temp = new String[data.length * 2];
-		for (int i = 0; i < temp.length; i++) {
+		for (int i = 0; i < top; i++) {
 			temp[i] = data[i];
 		}
 		data = temp;
@@ -32,7 +42,4 @@ public class MyStack {
 		return top == -1;
 	}
 
-	public String pop() throws MyStackException {
-
-	}
 }
