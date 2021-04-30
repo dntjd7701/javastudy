@@ -22,7 +22,6 @@ public class MyStack {
 		for (int i = 0; i < temp.length; i++) {
 			temp[i] = data[i];
 		}
-		String[] data = new String[temp.length];
 		data = temp;
 
 	}
