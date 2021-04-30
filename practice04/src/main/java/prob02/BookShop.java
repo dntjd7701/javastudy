@@ -23,60 +23,73 @@ public class BookShop {
 		int num = scanner.nextInt();
 		scanner.close();
 
-		// (1) 입력된 번호에 맞는 책을 찾아 대여 되었음(상태코드=0)을 체크 합니다.
-		switch (num) {
-		case 0:
-			books[0].rent();
-			break;
-		case 1:
-			books[1].rent();
-			break;
-
-		case 2:
-			books[2].rent();
-			break;
-
-		case 3:
-			books[3].rent();
-			break;
-
-		case 4:
-			books[4].rent();
-			break;
-
-		case 5:
-			books[5].rent();
-			break;
-
-		case 6:
-			books[6].rent();
-			break;
-
-		case 7:
-			books[7].rent();
-			break;
-		case 8:
-			books[8].rent();
-			break;
-
-		case 9:
-			books[9].rent();
-			break;
-
-		default:
-			System.out.println("잘못입력하셨슴다.");
-			break;
-
+		
+		for(int i = 0; i < books.length; i++) {
+			if(num == books[i].getBookNo()) {
+				books[i].rent(0, books[i].getTitle());
+			}
+			
 		}
+		// (1) 입력된 번호에 맞는 책을 찾아 대여 되었음(상태코드=0)을 체크 합니다.
+//		switch (num) {
+//		case 0:
+//			books[0].rent();
+//			break;
+//		case 1:
+//			books[1].rent();
+//			break;
+//
+//		case 2:
+//			books[2].rent();
+//			break;
+//
+//		case 3:
+//			books[3].rent();
+//			break;
+//
+//		case 4:
+//			books[4].rent();
+//			break;
+//
+//		case 5:
+//			books[5].rent();
+//			break;
+//
+//		case 6:
+//			books[6].rent();
+//			break;
+//
+//		case 7:
+//			books[7].rent();
+//			break;
+//		case 8:
+//			books[8].rent();
+//			break;
+//
+//		case 9:
+//			books[9].rent();
+//			break;
+//
+//		default:
+//			System.out.println("잘못입력하셨슴다.");
+//			break;
+//
+//		}
+		
+		
+		
+		
 		// (2) Book 객체의 정보를 출력
 		System.out.println("*****도서 정보 출력하기******");
 		displayBookInfo(books);
 	}
 
 	private static void displayBookInfo(Book[] books) {
-		// TODO Auto-generated method stub
-		System.out.println(books);
+	
+		for(int i = 0; i < books.length; i++) {
+			books[i].print();
 	}
 
 	
+	}
 }

@@ -13,8 +13,8 @@ public class Book {
 		stateCode = 1;
 	}
 
-	public void rent() {
-		stateCode = 0;
+	public void rent(int stateCode, String title) {
+		this.stateCode = stateCode;
 		System.out.println(title + "이(가) 대여 됐습니다.");
 
 	}

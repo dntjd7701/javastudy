@@ -1,6 +1,6 @@
 package prob03;
 
-public class Tank{
+public class Tank extends Unit{
 	// 현재 위치
 	private int x;
 	private int y;

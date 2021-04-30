@@ -12,23 +12,29 @@ public class CalcApp {
 			System.out.print( ">> " );
 			String expression = scanner.nextLine();
 			
+			
+			// quit 입력 시 종
 			if( "quit".equals( expression ) ) {
 				break;
 			}
 			
+			// " " 공백으로 구분하여 배열에 넣
 			String[] tokens = expression.split( " " );
 			
+			// 연산자를 포함하여 총 3개를 넘으면 오류로, 다시 처음부터 재입력 명령 
 			if( tokens.length != 3 ) {
 				System.out.println( ">> 알 수 없는 식입니다.");
 				continue;
 			}
 			
+			// String 으로 받은 입력을 int 로 변환 
 			int lValue = Integer.parseInt( tokens[ 0 ] );
 			int rValue = Integer.parseInt( tokens[ 2 ] );
 			
+			// 연산자에 따라서 switch사용 
 			switch( tokens[ 1 ] ) {
 				case "+" : {
-					Add add = new Add();
+					Arithmetic add = new Add();
 					add.setValue( lValue, rValue );
 					int result = add.calculate();
 					System.out.println( ">> " + result );
@@ -36,7 +42,7 @@ public class CalcApp {
 					break;
 				}
 				case "-" : {
-					Sub sub = new Sub();
+					Arithmetic sub = new Sub();
 					sub.setValue( lValue, rValue );
 					int result = sub.calculate();
 					System.out.println( ">> " + result );
@@ -44,7 +50,7 @@ public class CalcApp {
 					break;
 				}
 				case "*" : {
-					Mul mul = new Mul();
+					Arithmetic mul = new Mul();
 					mul.setValue( lValue, rValue );
 					int result = mul.calculate();
 					System.out.println( ">> " + result );
@@ -52,7 +58,7 @@ public class CalcApp {
 					break;					
 				}
 				case "/" : {
-					Div div = new Div();
+					Arithmetic div = new Div();
 					div.setValue( lValue, rValue );
 					int result = div.calculate();
 					System.out.println( ">> " + result );
