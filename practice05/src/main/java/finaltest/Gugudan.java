@@ -1,14 +1,21 @@
 package finaltest;
 
-public class Gugudan {
+public class  Gugudan<T> {
 
 	private int left;
 	private int right;
-
+	private int answer;
+	
 	public Gugudan(int left, int right) {
 		this.left = left;
 		this.right = right;
 	}
+	
+
+	public Gugudan(int answer) {
+		this.answer = answer;
+	}
+
 
 	@Override
 	public String toString() {

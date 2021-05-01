@@ -25,9 +25,11 @@ public class HashTest02 {
 		
 		for (int i = 0; i < 8; i++) {
 			s.add(new Gugudan((leftValue.nextInt(9)+1), (rightValue.nextInt(9)+1)));
-			System.out.println(s.toString());
+//			System.out.println(s.toString());
 		}
 
+		s.add(answer);
+		
 		Iterator<Gugudan> it = s.iterator();
 		
 		// 이 값들을 이중 배열 안에 넣고 , answer도 랜덤한 곳에 끼어 넣게 한 다음 출력?ㄲ
