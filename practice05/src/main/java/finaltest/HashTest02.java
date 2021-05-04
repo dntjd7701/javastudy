@@ -23,12 +23,12 @@ public class HashTest02 {
 		System.out.println(left + "x" + right);
 			
 		
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 8 ; i++) {
 			s.add(new Gugudan((leftValue.nextInt(9)+1), (rightValue.nextInt(9)+1)));
 //			System.out.println(s.toString());
 		}
 
-		s.add(answer);
+		s.add(new Gugudan(left,right);
 		
 		Iterator<Gugudan> it = s.iterator();
 		
