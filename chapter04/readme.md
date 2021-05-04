@@ -1,17 +1,6 @@
-# JAVA 2021.04.26 ~ 10.15
+# Socket Programming
 
-
-
-
-# Network
-
-## Socket Programming
-
-## MyEchoClient/MyEchoServer 참
-
-### BufferedWriter 대신 PrintWriter를 쓰는 이유 (메시지를 보낼 때, Server <-> Client)
-https://dream-space.tistory.com/4
-
+## BufferedWriter 대신 PrintWriter를 쓰는 이유 (메시지를 보낼 때, Server <-> Client)
 
 PrintWriter의 메서드들이BufferedWriter를 포함하고 있으며, 
 생성자 역시 PrintWriter가 훨씬 다양하기 때문에, 
@@ -36,8 +25,6 @@ PrintWriter는 File(String), OutputStream, Writer 등의 객체를
 
 # InputStreamReader, OutputStreamWriter
 
-
-
 byte -> char -> String 총 3가지 단계로 스트림을 이용하여 source들을 받고 출력할 수 있다.
 
 
@@ -56,5 +43,3 @@ byte -> char -> String 총 3가지 단계로 스트림을 이용하여 source들
 ## BufferedReader
 
 InputStreamReader로 받은 char 형을 String 단위로 읽어들이는 방식이다.
-
-
