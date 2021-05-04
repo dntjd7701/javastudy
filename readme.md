@@ -1,13 +1,12 @@
-# JAVA 2021.04.26 ~ 10.15
-
+# 				< JAVA 2021.04.26 ~ 10.15 >
 
 
 
 # Network
 
-## Socket Programming
+### Socket Programming
 
-## MyEchoClient/MyEchoServer 참
+### MyEchoClient/MyEchoServer 참고 할 것 
 
 ### BufferedWriter 대신 PrintWriter를 쓰는 이유 (메시지를 보낼 때, Server <-> Client)
 https://dream-space.tistory.com/4
