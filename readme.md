@@ -9,7 +9,8 @@
 	MyEchoClient/MyEchoServer 참고 할 것 
 	
 	
-### Socket이란?
+###Socket이란?
+
 소켓은 떨어져 있는 두 호스트를 연결해주는 도구로써 인터페이스 역할을 하는데, 데이터를 주고 받을 수 있는 구조체로 소켓을 통해 데이터 통로가 만들어 진다. 이러한 소켓은 역할에 따라 서버 소켓, 클라이언트 소켓으로 구분된다.
 <img src="/Users/kang-woosung/Desktop/스크린샷 2021-05-04 오후 4.53.00.png"  width="700" height="370">
 
@@ -33,14 +34,15 @@
 4)이를 통해 클라이언트와 서버가 서로 read(), write()를 하며 통신한다(반복)
 
 
-	TCP, UDP socket class 
+###TCP, UDP socket class 
 	
 TCP -> ServerSocket, Socket
 UDP -> DatagramSocket
 
 
 
-### BufferedWriter 대신 PrintWriter를 쓰는 이유 (메시지를 보낼 때, Server <-> Client)
+###BufferedWriter 대신 PrintWriter를 쓰는 이유 (메시지를 보낼 때, Server <-> Client)
+
 https://dream-space.tistory.com/4
 
 
@@ -66,8 +68,7 @@ PrintWriter는 File(String), OutputStream, Writer 등의 객체를
 
 
 
-
-# InputStreamReader, OutputStreamWriter
+###InputStreamReader, OutputStreamWriter
 
 
 
@@ -86,8 +87,24 @@ byte -> char -> String 총 3가지 단계로 스트림을 이용하여 source들
 	
 	써야 할 대상 <- OutputStream <- OutputStreamWriter <- 메소드1, 메소드2, 메소드3 ...
 	
-## BufferedReader
+	 BufferedReader
 
 InputStreamReader로 받은 char 형을 String 단위로 읽어들이는 방식이다.
 
+### InetAddress class
+	
+IP 주소를 표현한 클래스, 자바에서는 모든 IP 주소를 InetAddress 클래스를 사용한다.
 
+	InetAddress 클래스의 생성자
+InetAddress 클래스의 생성자는 하나만 존재하지만, 특이하게 기본 생성자의 접근 제한자 default이기 때문에 new 연산자 객체를 생성할 수 없습니다. 따라서 InetAddress 클래스는 객체를 생성해 줄 수 있는 5개의 static 메서드를 제공하고 있습니다.
+
+
+	InetAddress 객체를 생성하는 메서드		
+	
+<img src="/Users/kang-woosung/Desktop/스크린샷 2021-05-04 오후 5.56.53.png" width="500" height="370">
+
+
+	InterAddress 주요 메서드
+	
+<img src="/Users/kang-woosung/Desktop/스크린샷 2021-05-04 오후 5.59.27.png" width="500" height="170">
+	
