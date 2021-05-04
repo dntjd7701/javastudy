@@ -1,4 +1,4 @@
-package network;
+package network.test;
 
 import java.io.IOException;
 import java.io.InputStream;

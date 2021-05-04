@@ -1,10 +1,11 @@
-package network;
+package network.test;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class TCPClient {
 
@@ -42,7 +43,10 @@ public class TCPClient {
 		System.out.println("[client] received : " + data);
 				
 		
-		}catch(IOException e) {
+		}catch(SocketException e) {
+			log("suddenly closed by server");
+		}
+		catch(IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
@@ -54,5 +58,9 @@ public class TCPClient {
 			}
 	}
 
-}
+
+	}
+	private static void log(String log) {
+		System.out.println("[EchoClient] " + log);
+	}
 }
