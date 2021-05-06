@@ -10,52 +10,49 @@ import java.net.Socket;
 import java.net.SocketException;
 
 public class EchoServerReceiveThread extends Thread {
-
 	private Socket socket;
 	
 	public EchoServerReceiveThread(Socket socket) {
 		this.socket = socket;
 	}
+	
 	@Override
 	public void run() {
-
-		InetSocketAddress inetRemoteSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
+		InetSocketAddress inetRemoteSocketAddress = (InetSocketAddress)socket.getRemoteSocketAddress();
 		String remoteHostAddress = inetRemoteSocketAddress.getAddress().getHostAddress();
 		int remoteHostPort = inetRemoteSocketAddress.getPort();
-		EchoServer.log("connected by client[" + remoteHostAddress + ":" + remoteHostPort + "]");
-
+		EchoServer.log("connected by client[" + remoteHostAddress + ":" + remoteHostPort +"]");
+		
 		try {
 			// 4. IO Stream 받아오기
 			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
 			PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true);
-
-			while (true) {
+			
+			while(true) {
 				// 4. 데이터 읽기
 				String data = br.readLine();
-				if (data == null) {
+				if(data == null) {
 					EchoServer.log("closed by client");
 					break;
 				}
-
+				
 				EchoServer.log("received:" + data);
-
+			
 				// 5. 데이터 쓰기
 				pw.println(data);
 			}
-		} catch (SocketException e) {
+		} catch(SocketException e) {
 			EchoServer.log("suddenly closed by client");
-		} catch (IOException e) {
+		} catch(IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (socket != null && socket.isClosed() == false) {
+				if(socket != null && socket.isClosed() == false) {
 					socket.close();
 				}
-			} catch (IOException e) {
+			} catch(IOException e) {
 				e.printStackTrace();
 			}
-		}
-
+		}		
 	}
-
 }
