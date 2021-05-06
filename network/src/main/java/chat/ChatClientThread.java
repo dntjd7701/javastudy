@@ -7,10 +7,10 @@ import java.net.Socket;
 
 public class ChatClientThread extends Thread {
 	private BufferedReader br;
-
 	Socket socket = null;
 
-	public ChatClientThread(Socket socket) {
+	public ChatClientThread(Socket socket, BufferedReader br) {
+		this.br = br;
 		this.socket = socket;
 
 	}
@@ -18,17 +18,25 @@ public class ChatClientThread extends Thread {
 	@Override
 	public void run() {
 		try {
-			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-			while (true) {
-
-				System.out.println(br.readLine());
-
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				System.out.println(line);
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				if(socket != null && socket.isClosed() == false) {
+					socket.close();
+				} 
+				if(br != null) {
+					br.close();
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

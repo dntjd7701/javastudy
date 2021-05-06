@@ -17,9 +17,6 @@ public class ChatServer {
 
 		// 1. 서버 소켓 생성 
 		ServerSocket serverSocket = null;
-		
-		// PrintWriter담기 
-		
 		List<Writer> listWriters = new ArrayList<Writer>();
 
 		try {
@@ -28,7 +25,7 @@ public class ChatServer {
 			// (지역)호스트의 ip주소 반환, 호스트의 ip주소 반환
 			String hostAddress = InetAddress.getLocalHost().getHostAddress();
 			serverSocket.bind(new InetSocketAddress(hostAddress, PORT));
-			log("connection waiting..." + hostAddress + ":" + PORT);
+			log("연결중........" + hostAddress + ":" + PORT);
 			
 			
 			// 3. 요청 대기 
@@ -53,7 +50,7 @@ public class ChatServer {
 	}
 
 	public static void log(String log) {
-		System.out.println("[Server] " + log);
+		System.out.println("[서버##] " + log);
 	}
 
 }
