@@ -9,7 +9,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketException;
 
-import network.test.echo.EchoServer;
+import echo.EchoServer;
 
 public class MyEchoServerReceiveThread extends Thread {
 

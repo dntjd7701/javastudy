@@ -1,4 +1,4 @@
-package network.test.echo;
+package echo;
 
 import java.io.BufferedReader;
 import java.io.IOException;

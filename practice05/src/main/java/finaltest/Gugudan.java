@@ -1,55 +1,73 @@
 package finaltest;
 
-public class  Gugudan<T> {
+import java.util.Scanner;
 
-	private int left;
-	private int right;
-	private int answer;
+public class Gugudan {
 	
-	public Gugudan(int left, int right) {
-		this.left = left;
-		this.right = right;
-	}
+	static int resultNumber = 0;
 	
-
-	public Gugudan(int answer) {
-		this.answer = answer;
-	}
-
-
-	@Override
-	public String toString() {
-		return " "+left*right;
+	public static void main( String[] args ) {
+		int l = randomize( 1, 9 );
+		int r = randomize( 1, 9 );
 		
+		resultNumber = l * r;
+
+		int[] answerNumbers = randomizeAnswers();
+		int loc = randomize( 0, 8 );
+		answerNumbers[ loc ] = resultNumber;
+		
+		System.out.println( l + " x " + r + " = ?" );
+		
+		int length = answerNumbers.length;
+		for( int i = 0; i < length; i++ ) {
+			if( i % 3 == 0 ) {
+				System.out.print( "\n" );
+			} else {
+				System.out.print( "\t" );
+			}
+			
+			System.out.print( answerNumbers[ i ] );
+		}
+
+		System.out.print( "\n\n" );
+		System.out.print( "answer:" );
+
+		Scanner s = new Scanner( System.in );
+		//
+		//  이 부분에 적당한 코드를 작성합니다.  
+		//
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (left*right);
-//		result = prime * result + right;
-		return result;
+	private static int randomize( int lNum, int rNum ) {
+        int random = (int) ( Math.random() * rNum ) + lNum;
+        return random;
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Gugudan other = (Gugudan) obj;
-//		if (left != other.left)
-//			return false;
-//		if (right != other.right)
-//			return false;
-		if (left*right != other.left*other.right)
-			return true;
-		return true;
-	}
-
-
 	
+	private static int[] randomizeAnswers() {
+
+		final int COUNT_ANSWER_NUMBER = 9;
+		final int MAX_ANSWER_NUMBER = 81;
+		
+		int[] boardNumbers = new int[ COUNT_ANSWER_NUMBER ];
+		int occupied = 0;
+		
+		while( occupied < COUNT_ANSWER_NUMBER ) {
+			
+	        int random = ( int )( Math.random() * MAX_ANSWER_NUMBER ) + 1;
+	        
+	        boolean evaluted = false;
+	        for( int i = 0; i < occupied; i++ ) {
+	        	if( /* 이 부분에 적당 조건의 코드를 입력 합니다. */ ) {
+	        		evaluted = true;
+	        		break;
+	        	}
+	        }
+	        
+	        if( !evaluted ) {
+	        	boardNumbers[ occupied++ ] = random;
+	        }
+		}
+		
+        return boardNumbers;
+	}	
 }

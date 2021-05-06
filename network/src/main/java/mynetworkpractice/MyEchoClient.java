@@ -10,7 +10,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.Scanner;
 
-import network.test.echo.EchoServer;
+import echo.EchoServer;
 
 public class MyEchoClient {
 	private static final String SERVER_IP = "192.168.254.5";
