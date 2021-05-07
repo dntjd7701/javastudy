@@ -16,7 +16,7 @@ public class MySocketServer {
 			ServerSocket serverSocket = new ServerSocket(PORT);
 
 			// 서버 오픈 확인용
-			System.out.println("socket : " + serverSocket + "으로 서버가 열렸다 !!!!");
+			System.out.println("야생의 socket : " + serverSocket + " 가 열렸다 !!!!");
 
 			// 소켓 서버가 종료될 때까지 무한 루프
 			while (true) {
