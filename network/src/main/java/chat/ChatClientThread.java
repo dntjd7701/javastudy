@@ -2,69 +2,49 @@ package chat;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.util.Scanner;
+import java.net.SocketException;
 
-public class ChatClientThread extends Thread {
-	private BufferedReader br;
-	
-	Scanner sc = new Scanner(System.in); // 채팅용 , 서버로 메세지 보내는 thread
-	Socket socket = null;
+public class ChatClientThread extends Thread{
 
+	private String myNickname = null;
+	private BufferedReader br= null;
 	
-	public ChatClientThread(Socket socket, BufferedReader br) {
+	public ChatClientThread(String nickname,BufferedReader br) {
+		myNickname = nickname;
 		this.br = br;
-		this.socket = socket;
-
 	}
 
 	@Override
 	public void run() {
 		try {
-			
-			
-			// 메시지 입력 
-			
-			PrintWriter pw = new PrintWriter(socket.getOutputStream(),true);
-			
-			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			String line = br.readLine();
-			
-			// join 성공 확인 !!
-			String echo = br.readLine();
-			String[] tokens = echo.split(":");
-			if ("join".equals(tokens[0])) {
-				System.out.println(tokens[1]);
-			}
-			
-			
-			while(true){
-				pw.println(sc.nextLine());
+			while(true) {
+
+				String data = br.readLine();
+//				if( data == null ) {
+//					ChatClient.log("closed by server");
+//					break;
+//				}
 				
-				if(line != null) {
-				System.out.println(br.readLine());
+				if("join:ok".equals(data)) {
+					System.out.println(myNickname + "님 환영합니다.");
+					System.out.print(">>");
+				}else {
+					System.out.println("<" + data);
+					System.out.print(">>");
 				}
+				
 			}
-
-			
-			
-			
-
+		} catch (SocketException e) {
+			ChatClient.log("closed by server");
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
+		}finally {
 			try {
-				if(socket != null && socket.isClosed() == false) {
-					socket.close();
-				} 
-				if(br != null) {
+				if(br != null )
 					br.close();
-				}
-			} catch(Exception e) {
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-	}
+	}	
 }

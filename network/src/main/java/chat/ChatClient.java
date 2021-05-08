@@ -10,78 +10,46 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class ChatClient {
-	private static final String IP = "127.0.0.1";
-	private static final int PORT = ChatServer.PORT;
 
 	public static void main(String[] args) {
-
-		Scanner scanner = null;
+		Scanner sc = null;
 		Socket socket = null;
-
 		try {
-
-			// 1. 키보드 연결
-			scanner = new Scanner(System.in);
-
-			// 2. 소켓 생성
+			sc = new Scanner(System.in);
 			socket = new Socket();
+			socket.connect(new InetSocketAddress("127.0.0.1", 6910));
 			
-
-			// 3. 서버 연결
-
+			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
+			PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(),"UTF-8"),true);
+			
+			System.out.print("닉네임 >> ");
+			String nickname = sc.nextLine();
+			pw.println("join:"+ nickname);
+			
+			// thread
+			new ChatClientThread(nickname,br).start();
+			
 			while(true) {
-			socket.connect(new InetSocketAddress(IP, PORT));
-
-			
-			
-			// 4. reader/writer 생성
-			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
-			PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true);
-
-			
-			// 5. join protocol
-			// 닉네임 받아서 서버 쪽으로 보냄. 풀에 저장될거
-			
-			String nickname = scanner.nextLine();
-			pw.println("join:" + nickname);
-		
-			
-			
-			// 6. ChatClientReceiveThread 시작
-			Thread clientThread = new ChatClientThread(socket, br);
-			clientThread.start();
-			
-			
-			
-			// 7. 키보드 입력 처리
-			
-
-				String input = scanner.nextLine();
-				pw.println(input);
+				System.out.print(">> ");
+				String input = sc.nextLine();
 				
-				if ("quit".equals(input) == true) {
-					pw.println("quit:" + nickname);
-					break;
-				} else {
-					// 9. message
-					pw.println("message:" + input);
+				if("quit".equals(input)) {
+					pw.println("quit:");
+				}else {
+					pw.println("message:"+input);
 				}
 			}
 			
-			
-			
-			
-			
-
-		} catch (IOException e) {
-			e.printStackTrace();
+		}catch (IOException e) {
+			log("error" + e);
 		} finally {
 			try {
-				if (scanner != null) {
-					scanner.close();
-				}
-				if (socket != null && socket.isClosed() == false) {
+				if(socket != null && !socket.isClosed()) {
 					socket.close();
+				}
+				
+				if(sc != null) {
+					sc.close();
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -89,4 +57,7 @@ public class ChatClient {
 		}
 	}
 
+	static final void log(String log) {
+		System.out.println("[ChatClient] "+ log);
+	}
 }

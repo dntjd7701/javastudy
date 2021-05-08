@@ -13,7 +13,6 @@
 
 소켓은 떨어져 있는 두 호스트를 연결해주는 도구로써 인터페이스 역할을 하는데, 데이터를 주고 받을 수 있는 구조체로 소켓을 통해 데이터 통로가 만들어 진다. 이러한 소켓은 역할에 따라 서버 소켓, 클라이언트 소켓으로 구분된다.
 
-<img src="/Users/kang-woosung/Desktop/스크린샷 2021-05-04 오후 4.53.00.png"  width="700" height="370">
 
 	o Server
 
@@ -99,20 +98,51 @@ IP 주소를 표현한 클래스, 자바에서는 모든 IP 주소를 InetAddres
 	InetAddress 클래스의 생성자
 InetAddress 클래스의 생성자는 하나만 존재하지만, 특이하게 기본 생성자의 접근 제한자 default이기 때문에 new 연산자 객체를 생성할 수 없습니다. 따라서 InetAddress 클래스는 객체를 생성해 줄 수 있는 5개의 static 메서드를 제공하고 있습니다.
 
-
-	InetAddress 객체를 생성하는 메서드		
-	
-<img src="/Users/kang-woosung/Desktop/스크린샷 2021-05-04 오후 5.56.53.png" width="500" height="370">
-
-
-	InterAddress 주요 메서드
-	
-<img src="/Users/kang-woosung/Desktop/스크린샷 2021-05-04 오후 5.59.27.png" width="500" height="170">
-	
 	
 
-# 05.06
+# 05.08
 
-	httpd 수업
+	개인 공부 TCP
+	
+	
+### Writer Class
+
+java.io.Writer class is an abstract class. It is used to write to character streams.
+
+Writer class는 추상 클래스로 이번에 진행한 chat 연습에서의 
+List<Writer> ??? = new ArrayList<Writer>() 
+에서는 각 소켓의 pw들(각 클라이언트의 소켓을 가리키며 메세지를 보낼 때 사용하는 PrintWriter, Stream의 형태로 적어서 보낼 수 있다.-> 보조 스트림으로 String->char->byte의 형태로 보조 스트림을 거쳐 순차적으로 쪼개지고 전달된다.)
+이를 통해 형을 Writer로 지정해 데이터를 넣는다.
+
+
+## 동기화
+
+동기화, 즉, 멀티쓰레드 환경에서 공유하고 있는 공유 변수에 동시에 접근하여 값을 변경하지 않도록 하기 위한 방법이다.
+화장실에서 동기화가 이루어져있지 않다면 화장실을 사용하고 있는 중에 다른 사용자가 들어와 내 무릎위에 앉는 것을 에로 들 수 있다.
+즉, 중간에서 오는 개입을 막고 본인의 일을 마무리 할 때까지 데이터를 보존하고 그 변경된 데이터를 동기화 하는 것이다.
+	https://reakwon.tistory.com/85 
+	Synchronize의 좋은 예시와 동기화에 대한 글 
+	
+	
+### Socket
+
+서버-클라이언트 간에 통신을 한다고 가정하자.
+이 관계에서 통신의 접점 역할을 하는 소켓은 하나 뿐이다
+힙 영역에 소켓이 생성되면 각각 서버와 클라이언트가 하나인 소켓을 가리키고 있는 것이다.
+이 소켓을 읽고 소켓에 쓰며 서버와 클라이언트는 서로의 데이터를 주고 받는 것이다.
+
+만약에 이러한 관계가 서버와 클라이언트의 1대 n 관계로 넘어간다고 가정하자.
+이러한 경우에 통신을 위해선 서버는 연결된 각 클라이언트들의 소켓을 여러개 참조하고 있어야 한다.
+한 클라이언트와 통신을 위해선 그 고유한 소켓 하나만 이용되므로 
+이번에 chat 실습에서 진행된 과정에서는
+
+각 클라이언트들에게 메세지를 모두 보내주기 위해 Synchronize을 통해 모두의 데이터를 동기화 시키고
+PrintWriter(각 소켓에 보낼 socket.getOutputStream 데이터를 가지고 있는)을 
+리스트에 저장하고 broadcast 메소드의  for each 문을 통해 모두에게 데이터를 보내준다.
+
+"mychat" 에서의 pw는 소켓의 정보를 담고 있다 라고 일단 생각하면 좋다.
+
+
+	
 	
 
