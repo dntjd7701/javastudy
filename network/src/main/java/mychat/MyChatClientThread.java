@@ -36,10 +36,10 @@ public class MyChatClientThread extends Thread {
 					System.out.println(nickname + ", Welcome !");
 					System.out.print("# ");
 				} else {
-					// 이건 다른 이들의 데이터, 즉 받는 데이터 (메세지)
-					System.out.println("##" + messages);
-					// 내가 입력할 데이터
-//					System.out.print("# ");
+					// 내가 입력한 데이터(메세지) (에코같이)
+					System.out.println("## " + messages);
+					// 새로운 작성 
+					System.out.print("$$ ");
 				}
 
 			}
