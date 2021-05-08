@@ -49,19 +49,19 @@ public class MyChatClient {
 			// 프로토콜을 지정하여 입력 !
 
 			while (true) {
-				System.out.println("[나는야 클라이언트] ");
+//				System.out.println("[나는야 클라이언트] ");
 				// 메세지 입력
 				String input = sc.nextLine();
 
 				if ("quit".equals(input)) {
-					pw.println("quit");
+					pw.println("quit:" + nickname);
 				} else {
 					/**
 					 * 자 여기선, quit으로 입력한 메세지를 제외하곤 모두가 작성자가 작성하길 원하는 메세지 이므로 서버와 약속한 메세지의 형태에 맞게
 					 * 작성하여 입력해준다.
 					 * 
 					 */
-					pw.println("message:" + input);
+					pw.println("message:" + nickname + ":" + input);
 				}
 
 			}

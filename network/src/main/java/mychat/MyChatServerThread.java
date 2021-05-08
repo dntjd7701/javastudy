@@ -74,10 +74,12 @@ public class MyChatServerThread extends Thread {
 					// 아이디 값인 tokens[1]과 클라이언트로 메세지를 보내기 위한
 					// PrintWriter 객체의 변수 pw를 인자로 보냄.
 					doJoin(tokens[1], pw);
+					
 				} else if ("message".equals(tokens[0])) {
-					doMessage(tokens[1]);
+					doMessage(tokens[1], tokens[2]);
 				} else if ("quit".equals(tokens[0])) {
-					doQuit(pw);
+					log(tokens[1] + " 님이 나감!");
+					doQuit(nickname, pw);
 				} else {
 					log("Error : join,message,quit 이 아님 !! (" + tokens[0]+")" );
 				}
@@ -107,7 +109,7 @@ public class MyChatServerThread extends Thread {
 		String textToClinet = nickname + "가 참여함 !!!!";
 		// 클라이언트,즉, 작성자 저장
 		addWriter(pw);
-
+		broadcast(textToClinet);
 		// TCP통신의 ack 전송
 		// client에게 client가 참여했음을 알리는 join,
 		// 이걸 시그널로 채팅을 시작하게 하면 된다.
@@ -128,8 +130,8 @@ public class MyChatServerThread extends Thread {
 
 	}
 
-	private void doMessage(String message) {
-		broadcast(message);
+	private void doMessage(String nickname, String message) {
+		broadcast(nickname + ":" + message);
 	}
 
 	private void broadcast(String message) {
@@ -150,10 +152,10 @@ public class MyChatServerThread extends Thread {
 		}
 	}
 
-	private void doQuit(PrintWriter pw) {
+	private void doQuit(String nickname, PrintWriter pw) {
 		removeWriter(pw);
-		
 		String textToClient = nickname + "님이 나감!!!";
+		broadcast(textToClient);
 		pw.println(textToClient);
 		
 	}
