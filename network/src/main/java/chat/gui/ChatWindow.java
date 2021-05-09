@@ -1,5 +1,4 @@
 package chat.gui;
-
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
@@ -13,6 +12,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.Socket;
+import java.net.SocketException;
 
 public class ChatWindow {
 
@@ -21,26 +27,36 @@ public class ChatWindow {
 	private Button buttonSend;
 	private TextField textField;
 	private TextArea textArea;
-
-	// 소켓 추가 ?
-	public ChatWindow(String nickname) {
+	
+	private String nickname;
+	private Socket socket;
+	private BufferedReader br;
+	private PrintWriter pw;
+	
+	public ChatWindow(String nickname, Socket socket, BufferedReader br, PrintWriter pw) {
 		frame = new Frame(nickname);
 		pannel = new Panel();
 		buttonSend = new Button("Send");
 		textField = new TextField();
 		textArea = new TextArea(30, 80);
+		
+		this.nickname = nickname;
+		this.socket = socket;
+		this.br = br;
+		this.pw = pw;
+	
 	}
 
 	public void show() {
 		/**
-		 * 1. UI 초기화. 건들지 마!!
+		 *  1. UI 초기화
 		 */
 		// Button
 		buttonSend.setBackground(Color.GRAY);
 		buttonSend.setForeground(Color.WHITE);
-		buttonSend.addActionListener(new ActionListener() {
+		buttonSend.addActionListener( new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent actionEvent) {
+			public void actionPerformed( ActionEvent actionEvent ) {
 				sendMessage();
 			}
 		});
@@ -51,16 +67,13 @@ public class ChatWindow {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char keyCode = e.getKeyChar();
-				// 요게 맞으면 enter를 친거
-				if (keyCode == KeyEvent.VK_ENTER) {
-					// 이 때 sendMessage
-
+				if(keyCode == e.VK_ENTER) {
 					sendMessage();
 				}
 			}
-
+			
 		});
-
+		
 		// Pannel
 		pannel.setBackground(Color.LIGHT_GRAY);
 		pannel.add(textField);
@@ -72,61 +85,67 @@ public class ChatWindow {
 		frame.add(BorderLayout.CENTER, textArea);
 
 		// Frame
-		// Don't touch !
 		frame.addWindowListener(new WindowAdapter() {
-			// 바로 이게 끝내는거
 			public void windowClosing(WindowEvent e) {
 				finish();
 			}
 		});
 		frame.setVisible(true);
 		frame.pack();
-
+		
 		/**
-		 * 2. IOStream 생성 (코드 만들기)
+		 *  2. IOStream 생성
 		 */
 
 		/**
-		 * 3. ChatClientThread 생성 (Receive Thread)
+		 *  3. Chat Client Thread 생성 (Receive Thread)
 		 */
-
+		updateTextArea(nickname +"님 환영합니다");
+		new ChatClientThread().start();
+		
 	}
-	private void finish() {
-		// 여기서 방 나가기 프로토콜을 구현해야돼 
-		// 소켓을 닫으면 방나가기가 되는거야
-		// 두 개를 다 구현하는게 아니고, 선택해서 구현하는거야 
-		System.out.println("방나가기 프로토콜 구현 ");
-		System.out.println("소켓 닫기");
-		System.exit(0);
-	}
-
+	
 	private void sendMessage() {
 		String message = textField.getText();
-
-		// 프로 토콜 구현. enter 치는 거
-		System.out.println("프로토콜 구현: " + message);
-		
-		//예시를 위해서 만든거임 바로 아래코드는 ㄴㄴ 지우삼 사실 아래 엄데이트텍스트에리아 에서 받아야함
-		updateTextArea("마이콜 : " + message);
-
-//		printwrite해가지고 그냥 보내면 되는거
-		// 보내고 나면 지워야
+		pw.println(message);
 		textField.setText("");
 		textField.requestFocus();
 	}
 	
-	//
-	private void updateTextArea(String message) {
-		textArea.append(message);
+	private void updateTextArea(String msg) {
+		textArea.append(msg);
 		textArea.append("\n");
 	}
 
-	private class ChatClientThread extends Thread {
+	private void finish() {
+		try {
+			if(socket != null && !socket.isClosed())
+				socket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.exit(0);
+	}
+
+	
+	private class ChatClientThread extends Thread{
+
 		@Override
 		public void run() {
-			updateTextArea("...");
-			// 예시임. 내부 클래스 쓰는 이
+			while(true) {
+				try {
+					String responseMsg = br.readLine();
+					updateTextArea(responseMsg);
+				} catch (SocketException e) {
+					break;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		
 	}
+
 }
+

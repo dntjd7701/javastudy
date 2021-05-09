@@ -153,3 +153,14 @@ PrintWriter(각 소켓에 보낼 socket.getOutputStream 데이터를 가지고 �
 6. quit 했음에도 메세지 입력이 가능함. (닉네임만 사라짐)
 
 
+
+# 05.09
+
+	java FX를 이용하여 multi chatting 프로그램 만들기 mychat.gui
+	
+https://www.youtube.com/watch?v=uxCaXQIKbEw
+
+GUI Chatting 만들기 구현 완료.
+TCP 프로토콜의 전반적인 이해는 가지만, 완벽하게 0 to Z할 수 있는건 아직 아님. 
+GUI 메소드 부분, 부족 
+
