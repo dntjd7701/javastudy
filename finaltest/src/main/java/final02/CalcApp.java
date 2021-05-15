@@ -1,5 +1,5 @@
 
-package finaltest02;
+package final02;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

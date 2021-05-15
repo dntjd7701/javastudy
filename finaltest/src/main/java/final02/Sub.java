@@ -1,4 +1,4 @@
-package finaltest02;
+package final02;
 
 public class Sub implements Arithmetic {
 
