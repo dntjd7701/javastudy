@@ -39,6 +39,9 @@ public class User {
 	// 없을 경우에 같은 값을 넣어도
 	// 다르게 인식한다.
 	
+	
+	// 아이디와 패스워드 스트링의 값 자체를 비교하기 위해
+	// hashcode & equals 사용 
 
 	@Override
 	public int hashCode() {
